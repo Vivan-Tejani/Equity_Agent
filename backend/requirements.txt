@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pdfplumber
+pandas
+openpyxl
+chromadb
+sentence-transformers
+langchain
+langchain-community
+groq
+python-multipart

@@ -13,3 +13,4 @@ groq
 python-multipart
 python-dotenv
 pypdf
+langchain-text-splitters

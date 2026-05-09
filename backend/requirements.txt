@@ -9,3 +9,4 @@ langchain
 langchain-community
 groq
 python-multipart
+python-dotenv

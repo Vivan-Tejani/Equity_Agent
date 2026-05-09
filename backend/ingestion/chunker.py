@@ -8,7 +8,6 @@ text_splitter = RecursiveCharacterTextSplitter(
 )
 
 
-
 def chunk_documents(documents: list):
     """
     Splits parsed documents into smaller chunks

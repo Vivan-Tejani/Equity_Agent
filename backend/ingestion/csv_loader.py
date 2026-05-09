@@ -8,7 +8,7 @@ def load_csv(file_path: str, company: str):
     into standardized RAG-ready documents.
     """
 
-    file_path = Path("")
+    file_path = Path(file_path)
 
     if not file_path.exists():
         raise FileNotFoundError(f"File not found: {file_path}")

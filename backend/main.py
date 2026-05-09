@@ -8,7 +8,6 @@ from rag.chain import answer_question
 from analytics.scorecard import generate_scorecard
 from analytics.guidance_tracker import track_guidance
 from analytics.comparison import generate_comparison
-import pandas as pd
 
 app = FastAPI()
 
@@ -42,4 +41,4 @@ def guidance(company: str):
 
 @app.get("/comparison")
 def comparison():
-    return [generate_scorecard(company) for company in ["TCS", "Infosys", "Wipro", "HCLTech", "TechMahindra"]]
+    return generate_comparison()

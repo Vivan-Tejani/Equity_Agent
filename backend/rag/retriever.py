@@ -1,30 +1,30 @@
-import chromadb
-from sentence_transformers import SentenceTransformer
-from chromadb.api.types import Where
+from langchain_community.vectorstores import Chroma
+from langchain_huggingface import HuggingFaceEmbeddings
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
-client = chromadb.PersistentClient(path="./chroma_db")
-collection = client.get_or_create_collection("equity_research")
+EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+CHROMA_PATH = "chroma_db"
+
+embeddings = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
 
 def retrieve(query: str, n_results: int = 5, company: str | None = None):
-    query_embedding = model.encode(query).tolist()
-    
-    where_filter: Where | None = {"company": {"$eq": company}} if company else None
-    
-    results = collection.query(
-        query_embeddings=[query_embedding],
-        n_results=n_results,
-        where=where_filter
+    vectorstore = Chroma(
+        persist_directory=CHROMA_PATH,
+        embedding_function=embeddings
     )
-
-    documents = results["documents"] or []
-    metadatas = results["metadatas"] or []
-
+    
+    filter_dict = {"company": company} if company else None
+    
+    results = vectorstore.similarity_search(
+        query,
+        k=n_results,
+        filter=filter_dict
+    )
+    
     chunks = []
-    for i in range(len(documents[0])):
+    for r in results:
         chunks.append({
-            "text": documents[0][i],
-            "metadata": metadatas[0][i]
+            "text": r.page_content,
+            "metadata": r.metadata
         })
     
     return chunks

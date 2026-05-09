@@ -14,17 +14,18 @@ def retrieve(query: str, n_results: int = 5, company: str | None = None):
     
     filter_dict = {"company": company} if company else None
     
-    results = vectorstore.similarity_search(
+    results = vectorstore.similarity_search_with_relevance_scores(
         query,
         k=n_results,
         filter=filter_dict
     )
     
     chunks = []
-    for r in results:
+    for doc, score in results:
         chunks.append({
-            "text": r.page_content,
-            "metadata": r.metadata
+            "text": doc.page_content,
+            "metadata": doc.metadata,
+            "score": round(score, 4)
         })
     
     return chunks

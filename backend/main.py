@@ -34,8 +34,7 @@ def ask(request: QuestionRequest):
 
 @app.get("/scorecard/{company}")
 def scorecard(company: str):
-    df = pd.read_csv("data/processed/financials.csv")
-    return generate_scorecard(df, company)
+    return generate_scorecard(company)
 
 @app.get("/guidance/{company}")
 def guidance(company: str):
@@ -43,5 +42,4 @@ def guidance(company: str):
 
 @app.get("/comparison")
 def comparison():
-    df = pd.read_csv("data/processed/financials.csv")
-    return generate_comparison(df)
+    return [generate_scorecard(company) for company in ["TCS", "Infosys", "Wipro", "HCLTech", "TechMahindra"]]

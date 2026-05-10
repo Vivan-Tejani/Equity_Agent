@@ -30,3 +30,7 @@ __pycache__/
 
 chroma_db/
 test_pipline.py
+
+.env
+.env.local
+.env.production

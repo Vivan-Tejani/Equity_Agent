@@ -83,14 +83,13 @@ export default function Sidebar() {
             fontFamily: "var(--font-mono)",
             fontSize: 9,
             letterSpacing: "0.1em",
-            color: "var(--color-text-faint)",
+            color: "var(--color-text-secondary)",
             textTransform: "uppercase",
             marginTop: 3,
           }}
         >
           Indian IT · 5 Companies
         </span>
-        {/* Amber underline */}
         <div
           style={{
             marginTop: 10,
@@ -106,7 +105,7 @@ export default function Sidebar() {
       <nav className="flex flex-col py-4 flex-1">
         <span
           className="section-label px-5 mb-2"
-          style={{ color: "var(--color-text-faint)" }}
+          style={{ color: "var(--color-text-secondary)" }}
         >
           Analysis
         </span>
@@ -130,14 +129,20 @@ export default function Sidebar() {
                 : "transparent",
               color: isActive
                 ? "var(--color-text-primary)"
-                : "var(--color-text-muted)",
+                : "var(--color-text-secondary)",
               transition: "all 0.12s",
             })}
-            className="nav-link-item"
           >
             {({ isActive }) => (
               <>
-                <span style={{ color: isActive ? "var(--color-amber)" : "var(--color-text-faint)", display: "flex" }}>
+                <span
+                  style={{
+                    color: isActive
+                      ? "var(--color-amber)"
+                      : "var(--color-text-secondary)",
+                    display: "flex",
+                  }}
+                >
                   {item.icon}
                 </span>
                 <span
@@ -187,7 +192,7 @@ export default function Sidebar() {
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: 9,
-              color: "var(--color-text-muted)",
+              color: "var(--color-text-secondary)",
               letterSpacing: "0.05em",
             }}
           >
@@ -198,7 +203,7 @@ export default function Sidebar() {
           style={{
             fontFamily: "var(--font-mono)",
             fontSize: 9,
-            color: "var(--color-text-faint)",
+            color: "var(--color-text-muted)",
             marginTop: 4,
             letterSpacing: "0.05em",
           }}

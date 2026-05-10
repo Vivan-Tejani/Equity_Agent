@@ -76,7 +76,7 @@ export default function Sidebar() {
             textTransform: "uppercase",
           }}
         >
-          Equity Research
+          Equity Agent
         </span>
         <span
           style={{

@@ -83,7 +83,8 @@ export default function ScorecardPage() {
   }
 
   return (
-    <div className="fade-in" style={{ maxWidth: 780 }}>
+    <div className="page-shell">
+      <div className="page-content fade-in">
 
       {/* Header */}
       <div style={{ marginBottom: 24 }}>
@@ -162,6 +163,7 @@ export default function ScorecardPage() {
           <ScoreBar score={data.financial_score} />
         </div>
       )}
+      </div>
     </div>
   );
 }

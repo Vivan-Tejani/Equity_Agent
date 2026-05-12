@@ -4,19 +4,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        /* Surfaces — mirror :root in src/index.css */
+        /* Surfaces */
         canvas: "var(--color-base)",
         surface: "var(--color-surface)",
         panel: "var(--color-panel)",
         raised: "var(--color-raised)",
         elevated: "var(--color-elevated)",
+        
+        /* Borders */
         edge: "var(--color-border)",
         "edge-bright": "var(--color-border-bright)",
+        "edge-focus": "var(--color-border-focus)",
+        
         /* Text */
         ink: "var(--color-text-primary)",
         "ink-secondary": "var(--color-text-secondary)",
         "ink-muted": "var(--color-text-muted)",
         "ink-faint": "var(--color-text-faint)",
+        "ink-inverse": "var(--color-text-inverse)",
+        
         /* Amber system */
         amber: {
           DEFAULT: "var(--color-amber)",
@@ -26,10 +32,20 @@ export default {
           muted: "var(--color-amber-muted)",
           subtle: "var(--color-amber-subtle)",
         },
+        
         /* Status */
-        positive: "var(--color-green)",
-        caution: "var(--color-yellow)",
-        negative: "var(--color-red)",
+        positive: {
+          DEFAULT: "var(--color-green)",
+          subtle: "var(--color-green-subtle)"
+        },
+        caution: {
+          DEFAULT: "var(--color-yellow)",
+          subtle: "var(--color-yellow-subtle)"
+        },
+        negative: {
+          DEFAULT: "var(--color-red)",
+          subtle: "var(--color-red-subtle)"
+        },
       },
       fontFamily: {
         sans: ['"IBM Plex Sans"', "system-ui", "sans-serif"],
@@ -45,6 +61,20 @@ export default {
         xl: ["var(--text-xl)", { lineHeight: "var(--leading-snug)" }],
         "2xl": ["var(--text-2xl)", { lineHeight: "var(--leading-tight)" }],
         "3xl": ["var(--text-3xl)", { lineHeight: "var(--leading-tight)" }],
+      },
+      spacing: {
+        0: "var(--space-0)",
+        1: "var(--space-1)",
+        2: "var(--space-2)",
+        3: "var(--space-3)",
+        4: "var(--space-4)",
+        5: "var(--space-5)",
+        6: "var(--space-6)",
+        7: "var(--space-7)",
+        8: "var(--space-8)",
+        9: "var(--space-9)",
+        10: "var(--space-10)",
+        11: "var(--space-11)",
       },
       borderRadius: {
         xs: "var(--radius-xs)",
@@ -65,8 +95,11 @@ export default {
       },
       boxShadow: {
         ring: "var(--focus-ring)",
-        /* Subtle elevation — no colored glow */
-        lift: "0 1px 0 rgba(255,255,255,0.04) inset, 0 1px 2px rgba(0,0,0,0.35)",
+        /* Shadow system */
+        "sm": "var(--shadow-sm)",
+        "md": "var(--shadow-md)",
+        "lg": "var(--shadow-lg)",
+        "lift": "var(--shadow-lift)",
       },
     },
   },

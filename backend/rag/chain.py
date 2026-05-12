@@ -19,6 +19,8 @@ def get_contributions(chunks: list) -> dict:
     return contributions
 
 def answer_question(query: str, company: str | None = None):
+    if company == "All":
+        company = None
     chunks = retrieve(query, n_results=5, company=company)
     
     if not chunks:

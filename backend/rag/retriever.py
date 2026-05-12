@@ -12,7 +12,7 @@ def retrieve(query: str, n_results: int = 5, company: str | None = None):
         embedding_function=embeddings
     )
     
-    filter_dict = {"company": company} if company else None
+    filter_dict = {"company": company} if (company and company != "All") else None
     
     results = vectorstore.similarity_search_with_relevance_scores(
         query,

@@ -256,7 +256,7 @@ export default function QAPage() {
             disabled={loading || !question.trim()}
             style={{
               background: loading || !question.trim() ? "var(--color-border)" : "var(--color-amber)",
-              color: loading || !question.trim() ? "var(--color-text-muted)" : "#08090C",
+              color: loading || !question.trim() ? "var(--color-text-muted)" : "var(--color-text-inverse)",
               border: "none",
               borderRadius: "var(--radius-sm)",
               width: 34,

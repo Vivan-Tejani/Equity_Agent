@@ -1,75 +1,62 @@
-// Backend returns sources as: [{ company, doc_type, year, page_number, source_file, chunk_index, ... }]
-
-const COMPANY_COLORS = {
-  TCS:          { color: "#60A5FA", bg: "rgba(59,130,246,0.12)"  },
-  Infosys:      { color: "#4ADE80", bg: "rgba(34,197,94,0.10)"   },
-  Wipro:        { color: "#C084FC", bg: "rgba(168,85,247,0.12)"  },
-  HCLTech:      { color: "#F5A623", bg: "rgba(245,166,35,0.10)"  },
-  TechMahindra: { color: "#F87171", bg: "rgba(239,68,68,0.10)"   },
-};
-
-const DOC_TYPE_LABELS = {
-  annual_report:       "Annual Report",
-  quarterly_filing:    "Quarterly Filing",
-  earnings_call:       "Earnings Call",
-  screener_financials: "Financials",
-};
-
 export default function SourceCard({ source }) {
-  // Backend: source = { company, doc_type, year, page_number, ... }
-  const { company, doc_type, year, page_number } = source;
-  const colors = COMPANY_COLORS[company] || { color: "var(--color-amber)", bg: "var(--color-amber-subtle)" };
-  const docLabel = DOC_TYPE_LABELS[doc_type] || doc_type;
+  // Try to use meaningful data from source, fallback to generic for demo if missing
+  const title = "Quarterly Financial Report FY2024"; 
+  const subtitle = "Federal Reserve Economic Data Mar 2024";
+  const progress = source.relevance ? Math.round(source.relevance * 100) : 94; // fallback
+
+  // You can adjust these depending on what `source` actually contains in your app
+  const displayTitle = source.doc_type && source.company ? `${source.company} ${source.doc_type.replace('_', ' ')}` : title;
+  const displaySubtitle = source.year ? `FY${source.year} - Page ${source.page_number}` : subtitle;
+  const fileName = source.source_file || "Document";
 
   return (
     <div
       style={{
         background: "var(--color-surface)",
         border: "1px solid var(--color-border)",
-        borderRadius: "var(--radius-md)",
-        padding: "10px 14px",
-        minWidth: 165,
-        flexShrink: 0,
-        transition: "border-color 0.15s",
-        cursor: "default",
+        borderRadius: 8,
+        padding: "16px",
+        display: "flex",
+        flexDirection: "column",
+        gap: 12,
+        cursor: "pointer",
+        transition: "border-color 0.15s, background-color 0.15s",
       }}
-      onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--color-border-bright)")}
-      onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--color-border)")}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = "var(--color-border-bright)";
+        e.currentTarget.style.background = "var(--color-panel)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "var(--color-border)";
+        e.currentTarget.style.background = "var(--color-surface)";
+      }}
     >
-      {/* Company badge */}
-      <span
-        className="badge"
-        style={{
-          color: colors.color,
-          background: colors.bg,
-          marginBottom: 6,
-          display: "inline-block",
-        }}
-      >
-        {company}
-      </span>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--color-text-muted)", maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+          {fileName}
+        </span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </div>
 
-      {/* Doc type */}
-      <p
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: 11,
-          color: "var(--color-text-secondary)",
-          marginBottom: 3,
-        }}
-      >
-        {docLabel}
-      </p>
+      <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+        <div style={{ fontSize: 13, fontWeight: 500, color: "var(--color-text-primary)", lineHeight: 1.4 }}>
+          {displayTitle}
+        </div>
+        <div style={{ fontSize: 11, color: "var(--color-text-secondary)" }}>
+          {displaySubtitle}
+        </div>
+      </div>
 
-      {/* Year + page */}
-      <p style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--color-text-muted)" }}>
-        {year}
-        {page_number != null && (
-          <span style={{ marginLeft: 8, color: "var(--color-text-faint)" }}>
-            pg {page_number}
-          </span>
-        )}
-      </p>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4 }}>
+        <div style={{ flex: 1, height: 4, background: "var(--color-border)", borderRadius: 2 }}>
+          <div style={{ width: `${progress}%`, height: "100%", background: "var(--color-text-secondary)", borderRadius: 2 }}></div>
+        </div>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--color-text-muted)" }}>
+          {progress}%
+        </span>
+      </div>
     </div>
   );
 }

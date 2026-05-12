@@ -35,7 +35,8 @@ export default function GuidancePage() {
   const deliveries = data.filter((d) => d.type === "delivery");
 
   return (
-    <div className="fade-in" style={{ maxWidth: 900 }}>
+    <div className="page-shell">
+      <div className="page-content fade-in">
 
       {/* ── Header ── */}
       <div style={{ marginBottom: 24 }}>
@@ -130,6 +131,7 @@ export default function GuidancePage() {
 
         </div>
       )}
+      </div>
     </div>
   );
 }

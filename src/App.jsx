@@ -8,7 +8,7 @@ import ComparisonPage from "./pages/ComparisonPage";
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="flex min-h-screen" style={{ background: "var(--color-base)" }}>
+      <div className="flex w-full" style={{ background: "var(--color-base)", height: "100vh" }}>
 
         {/* ── Sidebar (desktop) ── */}
         <Sidebar />
@@ -16,45 +16,8 @@ export default function App() {
         {/* ── Main content ── */}
         <div className="flex flex-col flex-1 min-w-0">
 
-          {/* Top bar */}
-          <header
-            className="flex items-center px-6 gap-3 flex-shrink-0"
-            style={{
-              height: 48,
-              background: "var(--color-surface)",
-              borderBottom: "1px solid var(--color-border)",
-            }}
-          >
-            <span className="section-label" style={{ color: "var(--color-text-faint)" }}>
-              equity-research
-            </span>
-            <span style={{ color: "var(--color-text-faint)", fontSize: 10 }}>/</span>
-            <span className="section-label" style={{ color: "var(--color-amber)" }}>
-              indian-it
-            </span>
-
-            {/* Company pills */}
-            <div className="ml-auto flex items-center gap-2">
-              {[
-                { label: "TCS",   color: "#60A5FA", bg: "rgba(59,130,246,0.12)" },
-                { label: "INFY",  color: "#4ADE80", bg: "rgba(34,197,94,0.10)"  },
-                { label: "WIPRO", color: "#C084FC", bg: "rgba(168,85,247,0.12)" },
-                { label: "HCL",   color: "#F5A623", bg: "rgba(245,166,35,0.10)" },
-                { label: "TM",    color: "#F87171", bg: "rgba(239,68,68,0.10)"  },
-              ].map((c) => (
-                <span
-                  key={c.label}
-                  className="badge"
-                  style={{ color: c.color, background: c.bg }}
-                >
-                  {c.label}
-                </span>
-              ))}
-            </div>
-          </header>
-
           {/* Page content */}
-          <main className="flex-1 overflow-auto p-6">
+          <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
             <Routes>
               <Route path="/"           element={<QAPage />}         />
               <Route path="/scorecard"  element={<ScorecardPage />}  />

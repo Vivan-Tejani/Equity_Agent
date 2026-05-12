@@ -77,7 +77,8 @@ export default function ComparisonPage() {
   });
 
   return (
-    <div className="fade-in" style={{ maxWidth: 960 }}>
+    <div className="page-shell">
+      <div className="page-content-wide fade-in">
 
       {/* ── Header ── */}
       <div style={{ marginBottom: 24 }}>
@@ -246,6 +247,7 @@ export default function ComparisonPage() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }

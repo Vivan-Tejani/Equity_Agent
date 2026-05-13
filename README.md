@@ -43,7 +43,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Download the raw data files and place them in:
+Download the raw data files (you find these from Screener.in, BSE website) and place them in:
 ```
 backend/data/raw/
 ├── TCS/

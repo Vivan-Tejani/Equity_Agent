@@ -33,7 +33,7 @@ def answer_question(query: str, company: str | None = None):
     context = ""
     for chunk in chunks:
         m = chunk["metadata"]
-        context += f"\n[{m['company']} | {m['doc_type']} | {m['year']} | Page {m['page_number']}]\n{chunk['text']}\n"
+        context += f"\n[{m['company']} | {m['doc_type']} | {m['year']} | Page {m.get('page_number', 'N/A')}]\n{chunk['text']}\n"
     
     prompt = f"""You are an equity research analyst. Answer the question using ONLY the context below.
 If the answer is not in the context, say "Cannot answer from available documents."

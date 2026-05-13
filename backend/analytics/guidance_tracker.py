@@ -23,7 +23,7 @@ def track_guidance(company: str) -> list:
             "company": m["company"],
             "doc_type": m["doc_type"],
             "year": m["year"],
-            "page_number": m["page_number"]
+            "page_number": m.get("page_number", "N/A")
         })
 
     deliveries = []
